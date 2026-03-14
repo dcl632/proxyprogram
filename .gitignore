@@ -1,0 +1,21 @@
+# 巡檢日誌（本地保留，不推 GitHub）
+logs/
+
+# 鎖定文件
+*.lock
+
+# macOS 系統文件
+.DS_Store
+**/.DS_Store
+
+# 任務佇列（執行中狀態不需版本控制，但保留資料夾結構）
+tasks/running/*
+tasks/completed/*
+tasks/failed/*
+!tasks/running/.gitkeep
+!tasks/completed/.gitkeep
+!tasks/failed/.gitkeep
+
+# 環境設定（含敏感資訊）
+.env
+*.env
