@@ -9,8 +9,8 @@ export PATH="$HOME/.openclaw/bin:$HOME/.nvm/versions/node/v22.22.0/bin:/usr/loca
 
 set -euo pipefail
 
-# --- 載入環境變數（Telegram token、WP credentials 等）---
-ENV_FILE="$HOME/content-mill/.env"
+# --- 載入環境變數（Telegram token 等）---
+ENV_FILE="$(dirname "$0")/.env"
 [ -f "$ENV_FILE" ] && source "$ENV_FILE"
 
 # --- 設定 ---
