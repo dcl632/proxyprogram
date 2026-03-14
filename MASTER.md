@@ -121,16 +121,40 @@
 
 ## 第六區：互動準則
 
-### 巡檢流程
+### 系統節奏
+
+| 頻率 | 腳本 | 內容 |
+|------|------|------|
+| 每 30 分鐘 | `inspect.sh` | 例行巡檢、任務派發、文件更新 |
+| 每週日 21:00 | `weekly-report.sh` | 週報產出，推送 Telegram，等主人指示 |
+| 每月 1 日 02:00 | `archive-monthly.sh` | 歸檔 CHANGELOG / DONE.md，清理 RED_FLAGS |
+
+### 巡檢流程（每 30 分鐘）
 ```
 1. 讀取 MASTER.md（本文件）
 2. 讀取 RED_FLAGS.md — 優先回報 URGENT 項目
 3. 依第三區順序巡檢各營運單位
 4. 執行決策、透過 openclaw agent / swarm-task.sh 下達指令給龍蝦
 5. 更新各單位 TODO.md / DONE.md / STATUS.md
-6. 更新 CHANGELOG.md（本次巡檢摘要）
+6. 更新 CHANGELOG.md（本次巡檢摘要，開頭插入）
 7. 更新第三區狀態快覽
 8. git commit + push
+```
+
+### 週報流程（每週日 21:00）
+```
+1. 彙整本週 CHANGELOG、各站 STATUS、DONE、RED_FLAGS
+2. 產出週報推送 Telegram
+3. 存入 archive/weekly-reports/YYYY-WNN.md
+4. 等主人回覆指示 → 下次巡檢更新第二區全局優先級
+```
+
+### 月度歸檔流程（每月 1 日 02:00）
+```
+1. CHANGELOG.md → 只保留最近 14 天，舊記錄移至 archive/YYYY-MM/
+2. 各單位 DONE.md → 清空，舊記錄移至 archive/YYYY-MM/
+3. RED_FLAGS.md → 清除已處理項目
+4. git commit + push
 ```
 
 ### 與龍蝦叢集溝通方式
