@@ -68,8 +68,8 @@ git pull origin main >> "$LOG_FILE" 2>&1 || {
 echo "[$TIMESTAMP] 啟動 Claude Code..." >> "$LOG_FILE"
 
 claude --dangerously-skip-permissions -p "
-你是龍蝦巡檢員。現在是 $TIMESTAMP，開始例行巡檢。
-工作目錄：$REPO_DIR
+你是龍蝦巡檢員。現在是 ${TIMESTAMP}，開始例行巡檢。
+工作目錄：${REPO_DIR}
 
 請依序執行以下流程：
 
@@ -98,7 +98,7 @@ claude --dangerously-skip-permissions -p "
 
 【第七步】提交所有變更：
   git add .
-  git commit -m '[巡檢] $TIMESTAMP 摘要'
+  git commit -m '[巡檢] ${TIMESTAMP} 摘要'
   git push origin main
 
 不需要請示，直接行動。紅線內容以 MASTER.md 第五區為準。
