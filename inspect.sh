@@ -75,27 +75,33 @@ claude --dangerously-skip-permissions -p "
 
 【第一步】讀取 MASTER.md，了解全局狀態、優先級、紅線定義、互動準則。
 
-【第二步】讀取 RED_FLAGS.md：
+【第二步】讀取 INBOX.md（主人指令收件匣）：
+- 若有未處理指令，優先理解並執行
+- 執行完畢後，將 INBOX.md 清空，恢復為：
+  「（目前無待處理指令）」
+- 若有需要回報結果，透過 Telegram 通知主人
+
+【第三步】讀取 RED_FLAGS.md：
 - URGENT 項目：記錄於 CHANGELOG，觸發 Telegram 通知
 - PENDING 項目：整理摘要，加入本次 CHANGELOG
 
-【第三步】依序巡檢三站（shiftautomate → techtodaily → daliypluslife）：
+【第四步】依序巡檢所有營運單位（shiftautomate → techtodaily → daliypluslife → music-production → yt-pipeline）：
   a. 讀取 STATUS.md / TODO.md / DONE.md
   b. 讀取 tasks/completed/ 和 tasks/failed/，處理龍蝦回報
-  c. 決定本次行動，將 TODO 轉換為任務文件寫入 tasks/pending/
+  c. 決定本次行動，透過 openclaw agent 或 swarm-task.sh 下達指令給龍蝦
   d. 更新 STATUS.md、TODO.md、DONE.md
   e. 清理已處理的 tasks/completed/ 和 tasks/failed/ 文件
 
-【第四步】CHANGELOG.md 開頭新增本次巡檢紀錄
+【第五步】CHANGELOG.md 開頭新增本次巡檢紀錄
 
-【第五步】更新 MASTER.md 第三區狀態快覽
+【第六步】更新 MASTER.md 第三區狀態快覽
 
-【第六步】提交所有變更：
+【第七步】提交所有變更：
   git add .
   git commit -m '[巡檢] $TIMESTAMP 摘要'
   git push origin main
 
-不需要請示，直接行動。
+不需要請示，直接行動。紅線內容以 MASTER.md 第五區為準。
 " >> "$LOG_FILE" 2>&1
 
 EXIT_CODE=$?
